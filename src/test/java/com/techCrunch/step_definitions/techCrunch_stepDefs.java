@@ -22,16 +22,12 @@ public class techCrunch_stepDefs {
     @Then("Verify that each news contains image and author")
     public void verify_that_each_news_contains_image_and_author() {
 
-        List<WebElement> latestNews = Driver.getDriver().findElements(By.xpath("//article[contains(@class,'post-block')]"));
+        //List<WebElement> latestNews = Driver.getDriver().findElements(By.xpath("//article[contains(@class,'post-block')]"));
+        List<WebElement> latestNews = Driver.getDriver().findElements(By.xpath("//span[@class='river-byline__authors']"));
         // List<WebElement> latestNews = Driver.getDriver().findElements(By.xpath("//article[@class='post-block post-block--image post-block--unread']"));
         for (WebElement eachNews : latestNews) {
-            List<WebElement>authors=new LinkedList<>();
-            authors.add(eachNews.findElement(By.xpath("//span[@class='river-byline__authors']")));
-
-            for (WebElement author : authors) {
-                String eachAuth = author.getText();
-                System.out.println("eachAuth = " + eachAuth);
-            }
+            String eachAuthor = eachNews.getText();
+            System.out.println("eachAuthor = " + eachAuthor);
 
         }
 
