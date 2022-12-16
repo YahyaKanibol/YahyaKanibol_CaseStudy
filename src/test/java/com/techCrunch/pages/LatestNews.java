@@ -10,8 +10,9 @@ public class LatestNews {
         PageFactory.initElements(Driver.getDriver(),this);
     }
 
-    @FindBy(xpath = "//article[contains(@class,'post-block')]")
-    private WebElement news;
+
+    @FindBy (xpath = "//span[@class='river-byline__authors']")
+    public WebElement allAuthors;
 
 
 

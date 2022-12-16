@@ -1,10 +1,14 @@
 package com.techCrunch.step_definitions;
 
+import com.techCrunch.pages.LatestNews;
 import com.techCrunch.utilities.ConfigurationReader;
 import com.techCrunch.utilities.Driver;
+import com.techCrunch.utilities.Utilities;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
@@ -14,6 +18,8 @@ import java.util.concurrent.TimeUnit;
 
 public class techCrunch_stepDefs {
 
+    LatestNews latestNews=new LatestNews();
+
     @When("User lands on the homepage and sees loaded latest news")
     public void user_lands_on_the_homepage_and_sees_loaded_latest_news() {
         Driver.getDriver().get(ConfigurationReader.getProperty("url"));
@@ -21,16 +27,25 @@ public class techCrunch_stepDefs {
 
     @Then("Verify that each news contains image and author")
     public void verify_that_each_news_contains_image_and_author() {
-
-        //List<WebElement> latestNews = Driver.getDriver().findElements(By.xpath("//article[contains(@class,'post-block')]"));
-        List<WebElement> latestNews = Driver.getDriver().findElements(By.xpath("//span[@class='river-byline__authors']"));
         // List<WebElement> latestNews = Driver.getDriver().findElements(By.xpath("//article[@class='post-block post-block--image post-block--unread']"));
-        for (WebElement eachNews : latestNews) {
-            String eachAuthor = eachNews.getText();
-            System.out.println("eachAuthor = " + eachAuthor);
+        //List<WebElement> latestNews = Driver.getDriver().findElements(By.xpath("//article[contains(@class,'post-block')]"));
+        List<WebElement> allAuthors = Driver.getDriver().findElements(By.xpath("//span[@class='river-byline__authors']"));
 
+        for (WebElement eachAuthor : allAuthors) {
+            String eachAuthorsName = eachAuthor.getText();
+            System.out.println("eachAuthor = " + eachAuthorsName);
+            Assert.assertNotNull(eachAuthor);
         }
 
+        List<WebElement> allThumbs = Driver.getDriver().findElements(By.xpath("//img[@sizes='(min-width: 1024px) 430px, 100vw']"));
+
+        for (WebElement eachThumb : allThumbs) {
+            JavascriptExecutor javascriptExecutor = (JavascriptExecutor) Driver.getDriver();
+
+           Assert.assertTrue((Boolean) javascriptExecutor.executeScript("return arguments[0].complete "
+                    + "&& typeof arguments[0].naturalWidth != 'undefined'"
+                    + "&& arguments[0].naturalWidth > 0", eachThumb));
+        }
     }
 }
 
