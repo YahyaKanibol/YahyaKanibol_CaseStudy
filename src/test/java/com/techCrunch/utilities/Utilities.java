@@ -13,5 +13,9 @@ public  class Utilities {
                 + "&& arguments[0].naturalWidth > 0", imageElement);
     }
 
+    public static String URLToString(String link){
 
+        String subs= link.substring(34,link.length()-1);
+        return subs.replace("-"," ");
+    }
 }

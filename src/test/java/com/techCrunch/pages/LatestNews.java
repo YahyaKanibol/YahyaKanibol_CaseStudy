@@ -11,8 +11,7 @@ public class LatestNews {
     }
 
 
-    @FindBy (xpath = "//span[@class='river-byline__authors']")
-    public WebElement allAuthors;
+
 
 
 

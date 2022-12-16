@@ -28,7 +28,7 @@ public class techCrunch_stepDefs {
     @Then("Verify that each news contains image and author")
     public void verify_that_each_news_contains_image_and_author() {
         // List<WebElement> latestNews = Driver.getDriver().findElements(By.xpath("//article[@class='post-block post-block--image post-block--unread']"));
-        //List<WebElement> latestNews = Driver.getDriver().findElements(By.xpath("//article[contains(@class,'post-block')]"));
+
         List<WebElement> allAuthors = Driver.getDriver().findElements(By.xpath("//span[@class='river-byline__authors']"));
 
         for (WebElement eachAuthor : allAuthors) {
@@ -41,8 +41,7 @@ public class techCrunch_stepDefs {
 
         for (WebElement eachThumb : allThumbs) {
             JavascriptExecutor javascriptExecutor = (JavascriptExecutor) Driver.getDriver();
-
-           Assert.assertTrue((Boolean) javascriptExecutor.executeScript("return arguments[0].complete "
+            Assert.assertTrue((Boolean) javascriptExecutor.executeScript("return arguments[0].complete "
                     + "&& typeof arguments[0].naturalWidth != 'undefined'"
                     + "&& arguments[0].naturalWidth > 0", eachThumb));
         }
