@@ -14,7 +14,7 @@ import java.util.Random;
 
 public class LatestNews {
     public LatestNews() {
-        PageFactory.initElements(Driver.getDriver(),this);
+        PageFactory.initElements(Driver.getDriver(), this);
     }
 
     String browserTitle = "";
@@ -26,8 +26,27 @@ public class LatestNews {
     String[] eachWord_of_the_URL = null;
     String[] eachWord_of_the_BrowserTitle = null;
 
-    // There are bunch of Latest News, so they all stored in latestNews as List.
-    List<WebElement> latestNews = Driver.getDriver().findElements(By.xpath("//article[contains(@class,'post-block')]"));
+    /**
+     * There are bunch of Latest News,each news should have an "Author", so they all stored in  as List.
+     **/
+    List<WebElement> allAuthors = Driver
+            .getDriver()
+            .findElements
+                    (By.xpath("//span[@class='river-byline__authors']"));
+    /**
+     * There are bunch of Latest News,each news should have an "Image", so they all stored in  as List.
+     **/
+    List<WebElement> allThumbs = Driver
+            .getDriver()
+            .findElements
+                    (By.xpath("//img[@sizes='(min-width: 1024px) 430px, 100vw']"));
+    /**
+     * There are bunch of Latest News, so they all stored in latestNews as List.
+     **/
+    List<WebElement> latestNews = Driver
+            .getDriver()
+            .findElements
+                    (By.xpath("//article[contains(@class,'post-block')]"));
 
     public void get_all_the_LatestNews_collectData() {
         // In order to select random from the Latest News, Random is used.
@@ -89,8 +108,19 @@ public class LatestNews {
 
     }
 
+    public void authorVerification() {
+        for (WebElement eachAuthor : allAuthors) {
+            String eachAuthorsName = eachAuthor.getText();
+            System.out.println("eachAuthor = " + eachAuthorsName);
+            Assert.assertNotNull(eachAuthor);
+        }
+    }
 
+    public void imageVerification() {
+        //IsImageDisplayed Method checks if the image exist on the addressed locator.
 
-    /*Since all the web elements are required to store in lists, there is no single WebElement to be stored in Pages package. */
-
+        for (WebElement eachThumb : allThumbs) {
+            Utilities.isImageDisplayed(Driver.getDriver(), eachThumb);
+        }
+    }
 }

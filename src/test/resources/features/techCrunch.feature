@@ -6,7 +6,8 @@ Feature: As a user I should see that each news has its own image and author from
   @test1
   Scenario: User sees image and author of each news
     When User lands on the homepage and sees loaded latest news
-    Then Verify that each news contains image and author
+    Then Verify that each news contains author
+    Then Verify that each news contains image
 
   @test2
   Scenario: Browser title is the same with the news title and the links within the news content
