@@ -6,10 +6,7 @@ import com.techCrunch.utilities.Utilities;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -27,21 +24,24 @@ public class LatestNews {
     String[] eachWord_of_the_URL = null;
     String[] eachWord_of_the_BrowserTitle = null;
 
-    /**
-     * There are bunch of Latest News,each news should have an "Author", so they all stored in  as List.
-     **/
-    List<WebElement> allAuthors = Driver.getDriver().findElements(By.xpath("//span[@class='river-byline__authors']"));
-    /**
-     * There are bunch of Latest News,each news should have an "Image", so they all stored in  as List.
-     **/
-    List<WebElement> allThumbs = Driver.getDriver().findElements(By.xpath("//img[@sizes='(min-width: 1024px) 430px, 100vw']"));
-    /**
-     * There are bunch of Latest News, so they all stored in latestNews as List.
-     **/
-    List<WebElement> latestNews = Driver.getDriver().findElements(By.xpath("//article[contains(@class,'post-block')]"));
+
+    public void goToPage() {
+        Driver.getDriver().get(ConfigurationReader.getProperty("url"));
+    }
+
+
+
+
 
     public void get_all_the_LatestNews_collectData() {
+        List<WebElement> latestNews = Driver.getDriver().findElements(By.xpath("//article[contains(@class,'post-block')]"));
         // In order to select random from the Latest News, Random is used.
+
+        /*int min = 0;
+        int max = latestNews.size();
+        int randomIndex = (int) (Math.random() * (max - min + 1) + min);
+        latestNews.get(randomIndex).click();*/
+
         Random random = new Random();
         int randomIndex = random.nextInt(latestNews.size());
 
@@ -54,7 +54,7 @@ public class LatestNews {
         //After clicked on the news, the title of the page is stored as "browserTitle"
         browserTitle = Driver.getDriver().getTitle();
 
-        //Browser title is needed to get rid of "TechCruch" brand to compare with News Title
+        //Browser title is needed to get rid of "TechCrunch" brand to compare with News Title
         onlyBrowserTitle = browserTitle.substring(0, (browserTitle.indexOf("|") - 1));
 
         //Current URL is needed to get it's content
@@ -71,7 +71,7 @@ public class LatestNews {
         //Browser title needs to be stored in array as words to be compared with news' URL
         eachWord_of_the_BrowserTitle = browserTitlePure.split(" ");
 
-        System.out.println("***RANDOM INDEX= " + randomIndex);
+        /*System.out.println("***RANDOM INDEX= " + randomIndex);
         System.out.println(" ");
         System.out.println("***NEWS TITLE = " + newsTitleBeforeClick);
         System.out.println(" ");
@@ -87,7 +87,7 @@ public class LatestNews {
         System.out.println(" ");
         System.out.println("[URL as Array]= " + Arrays.toString(eachWord_of_the_URL));
         System.out.println(" ");
-        System.out.println("[Browser Title in Array] = " + Arrays.toString(eachWord_of_the_BrowserTitle));
+        System.out.println("[Browser Title in Array] = " + Arrays.toString(eachWord_of_the_BrowserTitle));*/
 
     }
 
@@ -100,23 +100,9 @@ public class LatestNews {
 
     }
 
-    public void authorVerification() {
-        for (WebElement eachAuthor : allAuthors) {
-            String eachAuthorsName = eachAuthor.getText();
-            System.out.println("eachAuthor = " + eachAuthorsName);
-            Assert.assertNotNull(eachAuthor);
-        }
-    }
 
-    public void imageVerification() {
-        //IsImageDisplayed Method checks if the image exist on the addressed locator.
 
-        for (WebElement eachThumb : allThumbs) {
-            Utilities.isImageDisplayed(Driver.getDriver(), eachThumb);
-        }
-    }
 
-    public void goToPage() {
-        Driver.getDriver().get(ConfigurationReader.getProperty("url"));
-    }
+
+
 }
