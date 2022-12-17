@@ -22,13 +22,13 @@ public  class Utilities {
         return subs.replace("-"," ");
     }
 
-    public static boolean ElementsInCommon(String[] words, String[] words1) {
+    public static boolean ElementsInCommon(String[] arr, String[] arr2) {
         int count = 0;
-        for (String word : words) {
-            for (String word1 : words1) {
+        for (String word : arr) {
+            for (String word1 : arr2) {
                 if (word.equals(word1)) {
                     count++;
-                    if (count >= 5) {
+                    if (count >= 3) {
                         return true;
                     }
                 }

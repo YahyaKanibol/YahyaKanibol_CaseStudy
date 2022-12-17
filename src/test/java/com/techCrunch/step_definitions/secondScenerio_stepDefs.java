@@ -20,8 +20,8 @@ public class secondScenerio_stepDefs {
     String newsTitle = "";
     String urlAsString="";
     String expectBrowserTitlePure="";
-    String[]words=null;
-    String[]words1=null;
+    String[] eachWord_of_the_URL =null;
+    String[] eachWord_of_the_BrowserTitle =null;
 
     @When("User clicks randomly one of the news from Latest News")
     public void user_clicks_randomly_one_of_the_news_from_latest_news() {
@@ -35,19 +35,27 @@ public class secondScenerio_stepDefs {
         browserTitleAsString =browserTitle.substring(0,(browserTitle.indexOf("|")-1));
         currentURL = Driver.getDriver().getCurrentUrl();
         urlAsString=Utilities.URLToString(currentURL);
-        words= urlAsString.split(" ");
+        eachWord_of_the_URL = urlAsString.split(" ");
         expectBrowserTitlePure = browserTitleAsString.replaceAll("[^a-zA-Z0-9 ]", "").toLowerCase();
-        words1 = expectBrowserTitlePure.split(" ");
+        eachWord_of_the_BrowserTitle = expectBrowserTitlePure.split(" ");
 
         System.out.println("***NEWS TITLE = " + newsTitle);
+        System.out.println(" ");
         System.out.println("***BROWSER TITLE = " + browserTitle);
+        System.out.println(" ");
         System.out.println("***CURRENT URL = " + currentURL);
-        System.out.println("***RANDOM INDEX= " + randomIndex);
-        System.out.println("***BROWSER TITLE AS STRING= " + browserTitleAsString);
+        System.out.println(" ");
         System.out.println("***URL AS STRING = " + urlAsString);
+        System.out.println(" ");
+        System.out.println("***RANDOM INDEX= " + randomIndex);
+        System.out.println(" ");
+        System.out.println("***BROWSER TITLE AS STRING= " + browserTitleAsString);
+        System.out.println(" ");
         System.out.println("expectBrowserTitlePure = " + expectBrowserTitlePure);
-        System.out.println("Arrays.toString(words) = " + Arrays.toString(words));
-        System.out.println("Arrays.toString(words1) = " + Arrays.toString(words1));
+        System.out.println(" ");
+        System.out.println("URL as Array= " + Arrays.toString(eachWord_of_the_URL));
+        System.out.println(" ");
+        System.out.println("Browser Title in Array = " + Arrays.toString(eachWord_of_the_BrowserTitle));
 
     }
 
@@ -56,6 +64,6 @@ public class secondScenerio_stepDefs {
         /*Firstly, we verify that browser title is exactly contained in news title*/
         Assert.assertTrue(newsTitle.contains(browserTitleAsString));
         /*Secondly, we verify that the words of news'  URL is matches with news' content*/
-        Assert.assertTrue(Utilities.ElementsInCommon(words,words1));
+        Assert.assertTrue(Utilities.ElementsInCommon(eachWord_of_the_URL, eachWord_of_the_BrowserTitle));
     }
 }
