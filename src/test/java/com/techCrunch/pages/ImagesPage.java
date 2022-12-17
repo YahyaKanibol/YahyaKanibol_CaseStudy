@@ -20,6 +20,7 @@ public class ImagesPage {
         //IsImageDisplayed Method checks if the image exist on the addressed locator.
 
         for (WebElement eachThumb : allThumbs) {
+
             Utilities.isImageDisplayed(Driver.getDriver(), eachThumb);
         }
     }
