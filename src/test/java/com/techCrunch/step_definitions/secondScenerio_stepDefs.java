@@ -39,6 +39,8 @@ public class secondScenerio_stepDefs {
         expectBrowserTitlePure = browserTitleAsString.replaceAll("[^a-zA-Z0-9 ]", "").toLowerCase();
         eachWord_of_the_BrowserTitle = expectBrowserTitlePure.split(" ");
 
+        System.out.println("***RANDOM INDEX= " + randomIndex);
+        System.out.println(" ");
         System.out.println("***NEWS TITLE = " + newsTitle);
         System.out.println(" ");
         System.out.println("***BROWSER TITLE = " + browserTitle);
@@ -46,8 +48,6 @@ public class secondScenerio_stepDefs {
         System.out.println("***CURRENT URL = " + currentURL);
         System.out.println(" ");
         System.out.println("***URL AS STRING = " + urlAsString);
-        System.out.println(" ");
-        System.out.println("***RANDOM INDEX= " + randomIndex);
         System.out.println(" ");
         System.out.println("***BROWSER TITLE AS STRING= " + browserTitleAsString);
         System.out.println(" ");
@@ -63,7 +63,8 @@ public class secondScenerio_stepDefs {
     public void verify_that_the_browser_title_is_the_same_with_the_news_title_and_the_links_within_the_news_content() {
         /*Firstly, we verify that browser title is exactly contained in news title*/
         Assert.assertTrue(newsTitle.contains(browserTitleAsString));
-        /*Secondly, we verify that the words of news'  URL is matches with news' content*/
+
+        /*Secondly, we verify that the words of news' URL matches with news' content (News content is inherited from browser's title)*/
         Assert.assertTrue(Utilities.ElementsInCommon(eachWord_of_the_URL, eachWord_of_the_BrowserTitle));
     }
 }
