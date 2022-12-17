@@ -16,7 +16,7 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/features",
         glue = "com/techCrunch/step_definitions",
         dryRun = false,
-        tags = "@test1",
+        tags = "@test",
         publish = true
 )
 public class RunTheCukes {

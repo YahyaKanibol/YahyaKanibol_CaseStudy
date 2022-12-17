@@ -1,5 +1,6 @@
 package com.techCrunch.pages;
 
+import com.techCrunch.utilities.ConfigurationReader;
 import com.techCrunch.utilities.Driver;
 import com.techCrunch.utilities.Utilities;
 import org.junit.Assert;
@@ -29,24 +30,15 @@ public class LatestNews {
     /**
      * There are bunch of Latest News,each news should have an "Author", so they all stored in  as List.
      **/
-    List<WebElement> allAuthors = Driver
-            .getDriver()
-            .findElements
-                    (By.xpath("//span[@class='river-byline__authors']"));
+    List<WebElement> allAuthors = Driver.getDriver().findElements(By.xpath("//span[@class='river-byline__authors']"));
     /**
      * There are bunch of Latest News,each news should have an "Image", so they all stored in  as List.
      **/
-    List<WebElement> allThumbs = Driver
-            .getDriver()
-            .findElements
-                    (By.xpath("//img[@sizes='(min-width: 1024px) 430px, 100vw']"));
+    List<WebElement> allThumbs = Driver.getDriver().findElements(By.xpath("//img[@sizes='(min-width: 1024px) 430px, 100vw']"));
     /**
      * There are bunch of Latest News, so they all stored in latestNews as List.
      **/
-    List<WebElement> latestNews = Driver
-            .getDriver()
-            .findElements
-                    (By.xpath("//article[contains(@class,'post-block')]"));
+    List<WebElement> latestNews = Driver.getDriver().findElements(By.xpath("//article[contains(@class,'post-block')]"));
 
     public void get_all_the_LatestNews_collectData() {
         // In order to select random from the Latest News, Random is used.
@@ -122,5 +114,9 @@ public class LatestNews {
         for (WebElement eachThumb : allThumbs) {
             Utilities.isImageDisplayed(Driver.getDriver(), eachThumb);
         }
+    }
+
+    public void goToPage() {
+        Driver.getDriver().get(ConfigurationReader.getProperty("url"));
     }
 }

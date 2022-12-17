@@ -1,17 +1,10 @@
 package com.techCrunch.step_definitions;
 
 import com.techCrunch.pages.LatestNews;
-import com.techCrunch.utilities.Driver;
-import com.techCrunch.utilities.Utilities;
+
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
 
 public class secondScenerio_stepDefs {
 
