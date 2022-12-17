@@ -4,9 +4,11 @@ import com.techCrunch.utilities.ConfigurationReader;
 import com.techCrunch.utilities.Driver;
 import com.techCrunch.utilities.Utilities;
 import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -23,11 +25,12 @@ public class LatestNews extends LatestNewsBase {
         Driver.getDriver().get(ConfigurationReader.getProperty("url"));
     }
 
+    @FindBy (xpath ="//article[contains(@class,'post-block')]")
+    private List<WebElement>latestNews;
+
     public void get_all_the_LatestNews_collectData() {
-        List<WebElement> latestNews = Driver.getDriver().findElements(By.xpath("//article[contains(@class,'post-block')]"));
+
         // In order to select random from the Latest News, Random is used.
-
-
         Random random = new Random();
         int randomIndex = random.nextInt(latestNews.size());
 
@@ -57,7 +60,7 @@ public class LatestNews extends LatestNewsBase {
         //Browser title needs to be stored in array as words to be compared with news' URL
         eachWord_of_the_BrowserTitle = browserTitlePure.split(" ");
 
-        /*System.out.println("***RANDOM INDEX= " + randomIndex);
+       /* System.out.println("***RANDOM INDEX= " + randomIndex);
         System.out.println(" ");
         System.out.println("***NEWS TITLE = " + newsTitleBeforeClick);
         System.out.println(" ");
@@ -81,6 +84,6 @@ public class LatestNews extends LatestNewsBase {
     }
     public void links_Within_the_NewsContent() {
         /*Secondly, we verify that the words of news' URL matches with news' content (News content is inherited from browser's title)*/
-        Assert.assertTrue(Utilities.ElementsInCommon(eachWord_of_the_URL, eachWord_of_the_BrowserTitle));
+        Assert.assertTrue(Utilities.compareEachInCommon(eachWord_of_the_URL, eachWord_of_the_BrowserTitle));
     }
 }
