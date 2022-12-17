@@ -4,9 +4,6 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 public  class Utilities {
 
     public static boolean isImageDisplayed(WebDriver driver, WebElement imageElement) {
@@ -22,7 +19,7 @@ public  class Utilities {
         return subs.replace("-"," ");
     }
 
-    public static boolean ElementsInCommon(String[] arr, String[] arr2) {
+    public static boolean compareEachInCommon(String[] arr, String[] arr2) {
         int count = 0;
         for (String word : arr) {
             for (String word1 : arr2) {

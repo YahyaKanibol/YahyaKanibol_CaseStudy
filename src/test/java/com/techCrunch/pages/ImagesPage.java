@@ -2,8 +2,9 @@ package com.techCrunch.pages;
 
 import com.techCrunch.utilities.Driver;
 import com.techCrunch.utilities.Utilities;
-import org.openqa.selenium.By;
+import org.junit.Assert;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
@@ -15,15 +16,16 @@ public class ImagesPage {
     /**
      * There are bunch of Latest News,each news should have an "Image", so they all stored in  as List.
      **/
+
+    @FindBy (xpath ="//img[@sizes='(min-width: 1024px) 430px, 100vw']")
+    private List<WebElement>allThumbs;
+
     public void imageVerification() {
-        List<WebElement> allThumbs = Driver.getDriver().findElements(By.xpath("//img[@sizes='(min-width: 1024px) 430px, 100vw']"));
+        //List<WebElement> allThumbs = Driver.getDriver().findElements(By.xpath("//img[@sizes='(min-width: 1024px) 430px, 100vw']"));
         //IsImageDisplayed Method checks if the image exist on the addressed locator.
 
         for (WebElement eachThumb : allThumbs) {
-
-            Utilities.isImageDisplayed(Driver.getDriver(), eachThumb);
+            Assert.assertTrue(Utilities.isImageDisplayed(Driver.getDriver(), eachThumb));
         }
     }
-
-
 }
