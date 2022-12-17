@@ -18,8 +18,6 @@ import java.util.concurrent.TimeUnit;
 
 public class techCrunch_stepDefs {
 
-    LatestNews latestNews=new LatestNews();
-
     @When("User lands on the homepage and sees loaded latest news")
     public void user_lands_on_the_homepage_and_sees_loaded_latest_news() {
         Driver.getDriver().get(ConfigurationReader.getProperty("url"));
@@ -27,10 +25,8 @@ public class techCrunch_stepDefs {
 
     @Then("Verify that each news contains image and author")
     public void verify_that_each_news_contains_image_and_author() {
-        // List<WebElement> latestNews = Driver.getDriver().findElements(By.xpath("//article[@class='post-block post-block--image post-block--unread']"));
 
         List<WebElement> allAuthors = Driver.getDriver().findElements(By.xpath("//span[@class='river-byline__authors']"));
-
         for (WebElement eachAuthor : allAuthors) {
             String eachAuthorsName = eachAuthor.getText();
             System.out.println("eachAuthor = " + eachAuthorsName);
@@ -38,12 +34,8 @@ public class techCrunch_stepDefs {
         }
 
         List<WebElement> allThumbs = Driver.getDriver().findElements(By.xpath("//img[@sizes='(min-width: 1024px) 430px, 100vw']"));
-
         for (WebElement eachThumb : allThumbs) {
-            JavascriptExecutor javascriptExecutor = (JavascriptExecutor) Driver.getDriver();
-            Assert.assertTrue((Boolean) javascriptExecutor.executeScript("return arguments[0].complete "
-                    + "&& typeof arguments[0].naturalWidth != 'undefined'"
-                    + "&& arguments[0].naturalWidth > 0", eachThumb));
+           Utilities.isImageDisplayed(Driver.getDriver(),eachThumb);
         }
     }
 }

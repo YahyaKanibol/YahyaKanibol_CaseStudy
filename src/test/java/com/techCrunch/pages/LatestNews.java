@@ -10,11 +10,6 @@ public class LatestNews {
         PageFactory.initElements(Driver.getDriver(),this);
     }
 
-
-
-
-
-
-
+ /*Since all the web elements are required to store in lists, there is no single WebElement to be stored in Pages package. */
 
 }
