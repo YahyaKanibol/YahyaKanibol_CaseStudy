@@ -20,9 +20,10 @@ public class AuthorsPage {
 
     public void authorVerification() {
         List<WebElement> allAuthors = Driver.getDriver().findElements(By.xpath("//span[@class='river-byline__authors']"));
+        int count=1;
         for (WebElement eachAuthor : allAuthors) {
             String eachAuthorsName = eachAuthor.getText();
-            System.out.println("eachAuthor = " + eachAuthorsName);
+            System.out.println("Author"+" "+count+++"=" + eachAuthorsName);
             Assert.assertNotNull(eachAuthor);
         }
     }
