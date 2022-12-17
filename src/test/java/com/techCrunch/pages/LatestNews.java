@@ -10,37 +10,23 @@ import org.openqa.selenium.support.PageFactory;
 import java.util.List;
 import java.util.Random;
 
-public class LatestNews {
+public class LatestNews extends LatestNewsBase {
     public LatestNews() {
         PageFactory.initElements(Driver.getDriver(), this);
     }
 
-    String browserTitle = "";
-    String onlyBrowserTitle = "";
-    String currentURL = "";
-    String newsTitleBeforeClick = "";
-    String urlAsString = "";
-    String browserTitlePure = "";
-    String[] eachWord_of_the_URL = null;
-    String[] eachWord_of_the_BrowserTitle = null;
-
+    /**
+     * There are bunch of Latest News,each news  stored in "latestNews" as List.
+     **/
 
     public void goToPage() {
         Driver.getDriver().get(ConfigurationReader.getProperty("url"));
     }
 
-
-
-
-
     public void get_all_the_LatestNews_collectData() {
         List<WebElement> latestNews = Driver.getDriver().findElements(By.xpath("//article[contains(@class,'post-block')]"));
         // In order to select random from the Latest News, Random is used.
 
-        /*int min = 0;
-        int max = latestNews.size();
-        int randomIndex = (int) (Math.random() * (max - min + 1) + min);
-        latestNews.get(randomIndex).click();*/
 
         Random random = new Random();
         int randomIndex = random.nextInt(latestNews.size());
