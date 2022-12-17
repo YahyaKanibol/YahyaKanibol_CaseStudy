@@ -18,6 +18,6 @@ import org.junit.runner.RunWith;
         tags = "@test",
         publish = true
 )
-public class runner {
+public class CukesRunner {
 
 }

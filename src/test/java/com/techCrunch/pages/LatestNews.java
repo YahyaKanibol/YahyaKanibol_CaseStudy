@@ -74,21 +74,13 @@ public class LatestNews extends LatestNewsBase {
         System.out.println("[URL as Array]= " + Arrays.toString(eachWord_of_the_URL));
         System.out.println(" ");
         System.out.println("[Browser Title in Array] = " + Arrays.toString(eachWord_of_the_BrowserTitle));*/
-
     }
-
-    public void assert_and_verify() {
+    public void browserTitle_and_NewsTitle_verification() {
         /*Firstly, we verify that browser title is exactly contained in news title*/
         Assert.assertTrue(newsTitleBeforeClick.contains(onlyBrowserTitle));
-
+    }
+    public void links_Within_the_NewsContent() {
         /*Secondly, we verify that the words of news' URL matches with news' content (News content is inherited from browser's title)*/
         Assert.assertTrue(Utilities.ElementsInCommon(eachWord_of_the_URL, eachWord_of_the_BrowserTitle));
-
     }
-
-
-
-
-
-
 }
