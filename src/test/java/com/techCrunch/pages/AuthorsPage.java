@@ -20,15 +20,15 @@ public class AuthorsPage {
 
     @FindBy (xpath = "//span[@class='river-byline__authors']")
     private List<WebElement>allAuthors;
+
+
     public void authorVerification() {
        // List<WebElement> allAuthors = Driver.getDriver().findElements(By.xpath("//span[@class='river-byline__authors']"));
-        int count=1;
+        //int count=1;
         for (WebElement eachAuthor : allAuthors) {
             String eachAuthorsName = eachAuthor.getText();
             Assert.assertTrue(eachAuthorsName.trim().length() > 0 );
-            System.out.println("Author"+" "+count+++"=" + eachAuthorsName);
-
-
+            //System.out.println("Author"+" "+count+++"=" + eachAuthorsName);
         }
     }
 }

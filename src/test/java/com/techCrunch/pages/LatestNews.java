@@ -60,7 +60,7 @@ public class LatestNews extends LatestNewsBase {
         //Browser title needs to be stored in array as words to be compared with news' URL
         eachWord_of_the_BrowserTitle = browserTitlePure.split(" ");
 
-       /* System.out.println("***RANDOM INDEX= " + randomIndex);
+        System.out.println("***RANDOM INDEX= " + randomIndex);
         System.out.println(" ");
         System.out.println("***NEWS TITLE = " + newsTitleBeforeClick);
         System.out.println(" ");
@@ -76,7 +76,7 @@ public class LatestNews extends LatestNewsBase {
         System.out.println(" ");
         System.out.println("[URL as Array]= " + Arrays.toString(eachWord_of_the_URL));
         System.out.println(" ");
-        System.out.println("[Browser Title in Array] = " + Arrays.toString(eachWord_of_the_BrowserTitle));*/
+        System.out.println("[Browser Title in Array] = " + Arrays.toString(eachWord_of_the_BrowserTitle));
     }
     public void browserTitle_and_NewsTitle_verification() {
         /*Firstly, we verify that browser title is exactly contained in news title*/
@@ -86,4 +86,5 @@ public class LatestNews extends LatestNewsBase {
         /*Secondly, we verify that the words of news' URL matches with news' content (News content is inherited from browser's title)*/
         Assert.assertTrue(Utilities.compareEachInCommon(eachWord_of_the_URL, eachWord_of_the_BrowserTitle));
     }
+
 }

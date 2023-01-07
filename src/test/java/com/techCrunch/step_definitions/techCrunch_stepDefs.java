@@ -40,6 +40,7 @@ public class techCrunch_stepDefs {
     @Then("Verify that the links within the news content")
     public void verify_that_the_links_within_the_news_content() {
         latestNews.links_Within_the_NewsContent();
+
     }
 }
 
