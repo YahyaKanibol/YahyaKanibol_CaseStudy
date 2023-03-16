@@ -22,6 +22,7 @@ public class AuthorsPage {
     private List<WebElement>allAuthors;
 
 
+
     public void authorVerification() {
        // List<WebElement> allAuthors = Driver.getDriver().findElements(By.xpath("//span[@class='river-byline__authors']"));
         //int count=1;
