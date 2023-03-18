@@ -14,7 +14,7 @@ public class ImagesPage {
         PageFactory.initElements(Driver.getDriver(), this);
     }
     /**
-     * There are bunch of Latest News,each news should have an "Image", so they all stored in  as List.
+     * There are bunch of Latest News,each news should have an "Image", so they aasdll stored in  as List.
      **/
 
     @FindBy (xpath ="//img[@sizes='(min-width: 1024px) 430px, 100vw']")
